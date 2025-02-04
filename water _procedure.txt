@@ -1,0 +1,13 @@
+--select * from [dbo].[source_cars_data]
+create procedure UpdateWatermarkTable
+	@lastload varchar(200)
+as
+begin
+     --start transaction
+	 begin transaction;
+--update the incremental column in table
+	 update water_table
+	 set last_load = @lastload
+	 commit transaction;
+
+	 end;
